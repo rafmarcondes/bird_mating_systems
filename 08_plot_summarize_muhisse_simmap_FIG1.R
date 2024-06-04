@@ -1,5 +1,5 @@
 library(phytools)
-setwd('/Users/rs155/Dropbox/my_research/mating-systems/REVISION/unrandomized_analyses')
+setwd("/Users/rs155/Dropbox/my_research/mating-systems/REVISION/unrandomized_analyses")
 
 s <- readRDS("simmap_muhisse_500sims.rds")
 ds <- readRDS("dsimmap_muhisse_500sims.rds")
@@ -26,8 +26,8 @@ ace$L <- ace$`10A` + ace$`10B`
 ace <- ace[, 7:9]
 
 #### FIG 1####
-#pdf("simmap_muhisse_with_colored_edges.pdf", width = 100, height = 100)
-png("simmap_muhisse_with_colored_edges.png",units='px',width=1000,height=1000)
+# pdf("simmap_muhisse_with_colored_edges.pdf", width = 100, height = 100)
+png("simmap_muhisse_with_colored_edges.png", units = "px", width = 1000, height = 1000)
 
 # code below adapted from http://blog.phytools.org/2023/04/coloring-edges-of-plotted-tree-by.html
 tip.liks <- ace[(6619 + 1):13239, ]
@@ -69,8 +69,8 @@ ace <- as.data.frame(ds$ace)
 ace$A <- ace$`00A` + ace$`01A` + ace$`10A`
 ace$B <- ace$`00B` + ace$`01B` + ace$`10B`
 
-ace <- ace[, 7:8] 
-colnames(ace)=c('B','A')#rename regimes so that A is the background
+ace <- ace[, 7:8]
+colnames(ace) <- c("B", "A") # rename regimes so that A is the background
 
 pdf("simmap_muhisse_hidden_regimes_with_colored_edges.pdf", width = 100, height = 100)
 # par(bg='grey')

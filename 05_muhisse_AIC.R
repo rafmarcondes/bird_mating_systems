@@ -17,5 +17,4 @@ for (f in files) {
 
 mods <- as.data.frame(unlist(mods))
 
-write.csv(x=mods,file="/Users/rs155/Dropbox/my_research/mating-systems/REVISION/unrandomized_analyses/AIC.csv")
-
+write.csv(x = mods, file = "/Users/rs155/Dropbox/my_research/mating-systems/REVISION/unrandomized_analyses/AIC.csv")
