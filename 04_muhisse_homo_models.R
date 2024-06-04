@@ -1,11 +1,12 @@
 library(hisse)
 
-setwd("/Users/rs155/Dropbox/my_research/mating-systems/")
+setwd("/Users/rs155/Dropbox/my_research/mating-systems/REVISION/unrandomized_analyses")
 library(corHMM)
 library(geiger)
 
-tr <- read.tree("MCC_of_100_hackett_trees.tre")
-dat <- read.csv("imputed_data_binned_lek_15may2023.csv", row.names = 1)
+tr <- read.tree("/Users/rs155/Dropbox/my_research/mating-systems/MCC_of_100_hackett_trees.tre")
+dat <- read.csv("imputed_dat_unrandomized.csv", row.names = 1)
+
 
 td <- treedata(phy = tr, data = dat, sort = F)
 tr <- td$phy
@@ -36,7 +37,7 @@ dat <- dat[, c(1, 3, 4)]
 colnames(dat)[1] <- "sp"
 
 
-setwd("muhisse_models_24may2023")
+setwd("muhisse_models_same_divers_across_hidden_states")
 
 
 #### FH1####

@@ -1,8 +1,8 @@
 library(phytools)
-setwd("/Users/rs155/Dropbox/my_research/mating-systems/")
+setwd('/Users/rs155/Dropbox/my_research/mating-systems/REVISION/unrandomized_analyses')
 
-s <- readRDS("/Users/rs155/Dropbox/my_research/mating-systems/simmap_muhisse_500sims_08jun2023.rds")
-ds <- readRDS("/Users/rs155/Dropbox/my_research/mating-systems/dsimmap_muhisse_500sims_08jun2023.rds")
+s <- readRDS("simmap_muhisse_500sims.rds")
+ds <- readRDS("dsimmap_muhisse_500sims.rds")
 
 #### avg n of mating system transitions####
 ds$count <- as.data.frame(ds$count)
@@ -26,7 +26,8 @@ ace$L <- ace$`10A` + ace$`10B`
 ace <- ace[, 7:9]
 
 #### FIG 1####
-pdf("simmap_muhisse_with_colored_edges.pdf", width = 100, height = 100)
+#pdf("simmap_muhisse_with_colored_edges.pdf", width = 100, height = 100)
+png("simmap_muhisse_with_colored_edges.png",units='px',width=1000,height=1000)
 
 # code below adapted from http://blog.phytools.org/2023/04/coloring-edges-of-plotted-tree-by.html
 tip.liks <- ace[(6619 + 1):13239, ]
@@ -44,7 +45,7 @@ plot.phylo(
   edge.lty = 3, edge.color = edge.cols
 )
 legend(
-  x = "bottomleft", legend = c("Monogamous", "Non-lek polygamous", "Lek"),
+  x = "bottomleft", legend = c("Monogamous", "Resource-defense polygamous", "Lek"),
   col = c("black", "yellow", "red"), cex = 10, pch = 15
 )
 dev.off()
@@ -68,7 +69,8 @@ ace <- as.data.frame(ds$ace)
 ace$A <- ace$`00A` + ace$`01A` + ace$`10A`
 ace$B <- ace$`00B` + ace$`01B` + ace$`10B`
 
-ace <- ace[, 7:8]
+ace <- ace[, 7:8] 
+colnames(ace)=c('B','A')#rename regimes so that A is the background
 
 pdf("simmap_muhisse_hidden_regimes_with_colored_edges.pdf", width = 100, height = 100)
 # par(bg='grey')
@@ -79,7 +81,7 @@ allStates <- rbind(tip.liks, node.liks)
 allStates$A <- unlist(allStates$A)
 allStates$B <- unlist(allStates$B)
 cols <- setNames(
-  object = c("purple", "green"),
+  object = c("green", "purple"),
   nm = colnames(ace)
 )
 dummyfunction <- function(x) {
@@ -89,7 +91,7 @@ bla <- apply(allStates, 1, dummyfunction)
 edge.cols <- cols[unlist(bla)][s[[1]]$edge[, 2]]
 plot.phylo(
   x = s[[1]], cex = 0.2, edge.width = 0.01, type = "fan",
-  edge.lty = 3, edge.color = edge.cols, show.tip.label = T
+  edge.lty = 3, edge.color = edge.cols, show.tip.label = F
 )
 legend(
   x = "bottomleft", legend = c("Regime A", "Regime B"),

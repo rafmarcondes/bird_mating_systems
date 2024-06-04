@@ -1,7 +1,8 @@
 library(hisse)
 
-mod <- readRDS("/Users/rs155/Dropbox/my_research/mating-systems/muhisse_models_divers_dep_on_hidden_states_02jun2023/FD2.rds")
-ci <- readRDS("/Users/rs155/Dropbox/my_research/mating-systems/muhisse_CI_09oct2023.rds")
+setwd('/Users/rs155/Dropbox/my_research/mating-systems/REVISION/unrandomized_analyses')
+mod <- readRDS("muhisse_models_divers_dep_on_hidden_states/FD2.rds")
+ci <- readRDS("muhisse_CI.rds")
 ci <- ci$ci
 
 params <- mod$solution
@@ -94,7 +95,7 @@ lines(lwd = 1, x = rep(bp[3, 1], 2), y = ciEpsB[, 3], col = "blue")
 
 
 #### FIG 3#####
-pdf("/Users/rs155/Dropbox/my_research/mating-systems/final figs/fig3.pdf")
+pdf("fig3.pdf")
 layout(mat = matrix(nrow = 3, ncol = 2, dat = 1:6, byrow = T))
 
 # transitiosn, regime A

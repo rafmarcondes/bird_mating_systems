@@ -1,6 +1,6 @@
 library(hisse)
 
-setwd("/Users/rs155/Dropbox/my_research/mating-systems/muhisse_models_same_divers_across_hidden_states_24may2023")
+setwd("/Users/rs155/Dropbox/my_research/mating-systems/REVISION/unrandomized_analyses/muhisse_models_same_divers_across_hidden_states")
 files <- list.files()
 mods <- list()
 for (f in files) {
@@ -8,7 +8,7 @@ for (f in files) {
   names(mods)[length(mods)] <- gsub(".rds", "", f)
 }
 
-setwd("/Users/rs155/Dropbox/my_research/mating-systems/muhisse_models_divers_dep_on_hidden_states_02jun2023")
+setwd("/Users/rs155/Dropbox/my_research/mating-systems/REVISION/unrandomized_analyses/muhisse_models_divers_dep_on_hidden_states")
 files <- list.files()
 for (f in files) {
   aic <- readRDS(f)$AICc
@@ -16,4 +16,6 @@ for (f in files) {
 }
 
 mods <- as.data.frame(unlist(mods))
+
+write.csv(x=mods,file="/Users/rs155/Dropbox/my_research/mating-systems/REVISION/unrandomized_analyses/AIC.csv")
 

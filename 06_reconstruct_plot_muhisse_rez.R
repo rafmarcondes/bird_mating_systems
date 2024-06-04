@@ -1,9 +1,9 @@
 library(hisse)
 library(RColorBrewer)
-setwd("/Users/rs155/Dropbox/my_research/mating-systems/")
+setwd("/Users/rs155/Dropbox/my_research/mating-systems/REVISION/unrandomized_analyses")
 
 # top model
-mod <- readRDS("/Users/rs155/Dropbox/my_research/mating-systems/muhisse_models_divers_dep_on_hidden_states_02jun2023/FD2.rds")
+mod <- readRDS("muhisse_models_divers_dep_on_hidden_states/FD2.rds")
 
 #### reconstruction####
 
@@ -17,7 +17,7 @@ reco <- MarginReconMuHiSSE(
   n.cores = 5
 )
 Sys.time()
-saveRDS(object = reco, file = "muhisse_reco_07jun2023.rds")
+saveRDS(object = reco, file = "muhisse_reco.rds")
 
 
 reco <- readRDS("/Users/rs155/Dropbox/my_research/mating-systems/muhisse_reco_07jun2023.rds")

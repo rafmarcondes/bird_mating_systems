@@ -1,9 +1,10 @@
 library(hisse)
 library(phytools)
+setwd('/Users/rs155/Dropbox/my_research/mating-systems/REVISION/unrandomized_analyses')
 
 #### set up Q-matrix based on muhisse FD2 model estimates####
 
-muhisse <- readRDS("/Users/rs155/Dropbox/my_research/mating-systems/muhisse_models_divers_dep_on_hidden_states_02jun2023/FD2.rds")$solution
+muhisse <- readRDS("muhisse_models_divers_dep_on_hidden_states/FD2.rds")$solution
 muhisse <- muhisse[grep(x = names(muhisse), pattern = "q")]
 muhisse <- muhisse[muhisse > 0.0000000001]
 names(muhisse) <- gsub(x = names(muhisse), pattern = "q", replacement = "")
@@ -26,7 +27,7 @@ diag(q) <- (-rowSums(q))
 
 #### set up matrix of tip probabilities based on muhisse recosntruction####
 
-reco <- readRDS("/Users/rs155/Dropbox/my_research/mating-systems/muhisse_reco_07jun2023.rds")
+reco <- readRDS("muhisse_reco.rds")
 dat <- reco$tip.mat
 dat <- dat[, c(2:4, 6:8)]
 colnames(dat) <- gsub(x = colnames(dat), pattern = "\\(", replacement = "")
@@ -38,7 +39,7 @@ dat <- as.matrix(dat)
 Sys.time()
 sm <- make.simmap(tree = reco$phy, x = dat, Q = q, nsim = 500, pi = "estimated")
 Sys.time()
-saveRDS(object = sm, file = "/Users/rs155/Dropbox/my_research/mating-systems/simmap_muhisse_500sims_08jun2023.rds")
+saveRDS(object = sm, file = "simmap_muhisse_500sims.rds")
 smd <- describe.simmap(sm)
 Sys.time()
-saveRDS(object = smd, file = "/Users/rs155/Dropbox/my_research/mating-systems/dsimmap_muhisse_500sims_08jun2023.rds")
+saveRDS(object = smd, file = "dsimmap_muhisse_500sims.rds")
